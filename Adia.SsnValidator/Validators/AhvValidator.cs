@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Adia.SsnValidator.Validators
 {
@@ -7,12 +8,13 @@ namespace Adia.SsnValidator.Validators
     {
         public bool Validate(string ahv)
         {
-            var ahv13 = ahv.Where(char.IsDigit).ToArray();
-            if(ahv13.Count() != 13)
+            var regex = new Regex(@"^756\.\d{4}\.\d{4}\.\d{2}$");
+            if(!regex.IsMatch(ahv))
             {
                 return false;
             }
 
+            var ahv13 = ahv.Where(char.IsDigit).ToArray();
             var ahv12 = ahv13.Take(12).Reverse().ToArray();
             var totalChecksum = 0;
             for (var i = 0; i < 12; i++)
