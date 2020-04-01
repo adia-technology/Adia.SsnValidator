@@ -25,7 +25,6 @@ namespace Adia.Ssn.Tests.Validators
         [TestCase("756.0298.4726.97", true)]
         [TestCase("756.5113.6381.28", true)]
         [TestCase("756.5466.9658.89", true)]
-        [TestCase("756.5466.9658.89", true)]
         [TestCase("756.5466.965889", false)]
         [TestCase("755:5466.9658.89", false)]
         [TestCase("7561656967213", false)]

@@ -8,7 +8,7 @@ namespace Adia.SsnValidator.Validators
     {
         public bool Validate(string ahv)
         {
-            var regex = new Regex(@"^756\.[\d]{4}[\.][\d]{4}[\.][\d]{2}$");
+            var regex = new Regex(@"^756\.\d{4}\.\d{4}\.\d{2}$");
             if(!regex.IsMatch(ahv))
             {
                 return false;
