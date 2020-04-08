@@ -3,7 +3,7 @@ using Adia.SsnValidator;
 using Adia.SsnValidator.Validators;
 using NUnit.Framework;
 
-namespace Adia.Ssn.Tests
+namespace Adia.SsnValidator.Tests
 {
     public class SsnValidatorFactoryTests
     {
