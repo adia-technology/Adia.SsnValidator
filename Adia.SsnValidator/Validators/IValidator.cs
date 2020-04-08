@@ -1,7 +1,7 @@
 ﻿namespace Adia.SsnValidator.Validators
 {
-    public interface IValidator
+    internal interface IValidator
     {
-        bool Validate(string ssn);
+        ValidationResult Validate(string ssn);
     }
 }

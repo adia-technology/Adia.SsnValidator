@@ -3,7 +3,7 @@ using Adia.SsnValidator.Validators;
 
 namespace Adia.SsnValidator
 {
-    public class SsnValidatorFactory
+    internal class SsnValidatorFactory
     {
         public IValidator Create(CountryCode country)
         {
@@ -13,7 +13,7 @@ namespace Adia.SsnValidator
                     return new AhvValidator();
 
                 default:
-                    throw new NotSupportedException("Your country is not supported");
+                    throw new NotSupportedException($"The provided country ({country}) is not supported.");
             }
         }
     }
