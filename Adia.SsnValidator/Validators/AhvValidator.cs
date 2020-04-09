@@ -4,14 +4,19 @@ using System.Text.RegularExpressions;
 
 namespace Adia.SsnValidator.Validators
 {
-    public class AhvValidator : IValidator
+    internal sealed class AhvValidator : IValidator
     {
-        public bool Validate(string ahv)
+        public ValidationResult Validate(string ahv)
         {
-            var regex = new Regex(@"^756\.\d{4}\.\d{4}\.\d{2}$");
-            if(!regex.IsMatch(ahv))
+            if (ahv == null)
             {
-                return false;
+                throw new ArgumentNullException(nameof(ahv));
+            }
+
+            var regex = new Regex(@"^756\.\d{4}\.\d{4}\.\d{2}$");
+            if (!regex.IsMatch(ahv))
+            {
+                return ValidationResult.InvalidFormat;
             }
 
             var ahv13 = ahv.Where(char.IsDigit).ToArray();
@@ -33,7 +38,8 @@ namespace Adia.SsnValidator.Validators
             var nextTimesTen = Math.Ceiling(totalChecksum / 10.0) * 10;
             var checksumDigit = (int)nextTimesTen - totalChecksum;
 
-            return checksumDigit == int.Parse(ahv.Last().ToString());
+            var isChecksumCorrect = checksumDigit == int.Parse(ahv.Last().ToString());
+            return isChecksumCorrect ? ValidationResult.Valid : ValidationResult.InvalidChecksum;
         }
     }
 }
